@@ -1,20 +1,16 @@
 m1, d1, m2, d2 = map(int, input().split())
 
 # Please write your code here.
-days = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+days_of_month = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+week_days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
-weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+def count_days(m, d):
+    total_days = 0
+    for i in range(1, m):
+        total_days += days_of_month[i]
+    total_days += d
 
-def day_of_year(m, d):
-    return sum(days[1:m]) + d
+    return total_days
 
-day1 = day_of_year(m1, d1)
-day2 = day_of_year(m2, d2)
-diff = day2 - day1
-
-first_weekday = input().strip()
-
-start_index = weekdays.index(first_weekday)
-
-result_index = (start_index + diff) % 7
-print(weekdays[result_index])
+diff = count_days(m2, d2) - count_days(m1, d1)
+print(week_days[diff % 7])
