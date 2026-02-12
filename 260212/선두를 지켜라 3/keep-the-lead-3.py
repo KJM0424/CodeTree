@@ -17,36 +17,33 @@ for _ in range(M):
     t2.append(ti)
 
 # Please write your code here.
-pos_a = []
-cur_loc = 0
+
+pos_a = [0]
+now = 0
 for i in range(N):
     for _ in range(t[i]):
-        cur_loc += v[i]
-        pos_a.append(cur_loc)
+        now += v[i]
+        pos_a.append(now)
 
-pos_b = []
-cur_loc = 0
+pos_b = [0]
+now = 0
 for i in range(M):
     for _ in range(t2[i]):
-        cur_loc += v2[i]
-        pos_b.append(cur_loc)
+        now += v2[i]
+        pos_b.append(now)
 
-ans = 0
-prev_status = -1  
+cnt = 0
+prev = 3 
 
-for i in range(len(pos_a)):
+for i in range(1, len(pos_a)):
+    curr = 3
     if pos_a[i] > pos_b[i]:
-        curr_status = 1  # A 
+        curr = 1
     elif pos_a[i] < pos_b[i]:
-        curr_status = 2  # B 
-    else:
-        curr_status = 3
-    if i == 0:
-        prev_status = curr_status
-        continue
+        curr = 2
     
-    if curr_status != prev_status:
-        ans += 1
-        prev_status = curr_status
+    if curr != prev:
+        cnt += 1
+        prev = curr
 
-print(ans)
+print(cnt)
